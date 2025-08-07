@@ -69,6 +69,14 @@ def descargar_sje(nombre_archivo):
 
     return send_file(ruta, as_attachment=True)
 
+@app.route("/download/test.txt")
+def test(nombre_archivo):
+    nombre_archivo = os.path.basename(nombre_archivo)
+    ruta = os.path.join(".", nombre_archivo)
+    if not os.path.exists(ruta):
+        return abort(404)
+    return send_file(ruta, as_attachment=True)
+
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", 5000))
     app.run(host="0.0.0.0", port=port)
