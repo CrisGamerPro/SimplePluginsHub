@@ -8,7 +8,7 @@ def bloqueado_por_user_agent():
     return "mozilla" in user_agent or "chrome" in user_agent or "safari" in user_agent
 
 @app.route("/download")
-def descargar_por_defecto(nombre_archivo):
+def descargar_por_defecto():
     nombre_archivo = "test.txt"
 
     ruta = os.path.join(".", nombre_archivo)
