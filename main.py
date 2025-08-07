@@ -19,10 +19,14 @@ def descargar_ss(nombre_archivo):
     if bloqueado_por_user_agent():
         return abort(403)
 
+    if nombre_archivo == "requirements.txt" or "main.py":
+        return abort(403)
     # Sanitizar el nombre del archivo para evitar rutas peligrosas
     nombre_archivo = os.path.basename(nombre_archivo)
 
     ruta = os.path.join(".", nombre_archivo)
+    if not os.path.abspath(ruta).startswith(os.path.abspath(DOWNLOADS_DIR)):
+        return abort(403, description="Access denied.")
     if not os.path.exists(ruta):
         return abort(404, description="File not found.")
 
