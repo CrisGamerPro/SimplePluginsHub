@@ -12,7 +12,7 @@ def descargar_por_defecto():
     nombre_archivo = "test.txt"
 
     ruta = os.path.join(".", nombre_archivo)
-    return send_files()
+    return send_file(ruta, as_attachment=True)
 
 @app.route("/download/<path:nombre_archivo>")
 def descargar_ss(nombre_archivo):
