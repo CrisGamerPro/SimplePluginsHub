@@ -8,10 +8,11 @@ def bloqueado_por_user_agent():
     return "mozilla" in user_agent or "chrome" in user_agent or "safari" in user_agent
 
 @app.route("/download")
-def descargar_por_defecto():
-    if bloqueado_por_user_agent():
-        return abort(403)
-    return abort(404, "Not found, Using default route /download, Missing route.")
+def descargar_por_defecto(nombre_archivo):
+    nombre_archivo = "test.txt"
+
+    ruta = os.path.join(".", nombre_archivo)
+    return send_files()
 
 @app.route("/download/<path:nombre_archivo>")
 def descargar_ss(nombre_archivo):
