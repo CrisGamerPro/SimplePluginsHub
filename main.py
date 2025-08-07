@@ -11,7 +11,7 @@ def bloqueado_por_user_agent():
 def descargar_por_defecto():
     if bloqueado_por_user_agent():
         return abort(403)
-    return abort(404, "Not found, Using default route /download, Missing route.)
+    return abort(404, "Not found, Using default route /download, Missing route.")
 
 @app.route("/download/SimpleSpawn.jar")
 def descargar_archivo(nombre_archivo):
